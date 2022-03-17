@@ -28,12 +28,34 @@ export class Covid19TableComponent implements OnInit {
   //   return this.data;
   // }
 
+
+  // constructor(private covid19CaseServiceService: Covid19CaseServiceService) { 
+  // }
+
+  // getCovid19Cases(): Covid19Case[] {
+  //   return this.covid19CaseServiceService.getCovid19Cases();
+  // }
+
+
   constructor(private covid19CaseServiceService: Covid19CaseServiceService) { 
+    this.realData = [];
+    this.getRealCovid19Cases();
   }
 
-  getCovid19Cases(): Covid19Case[] {
-    return this.covid19CaseServiceService.getCovid19Cases();
+  realData: Covid19Case[];
+  getRealCovid19Cases(): void {
+    this.covid19CaseServiceService.getRealCovid19Cases().subscribe(result => {
+       this.realData = result;
+      }
+    )
   }
+
+  getRealData(): Covid19Case[]{
+    return  this.realData;
+  }
+
+  name1: string;
+  name2: string;
 
   ngOnInit(): void {
   }
